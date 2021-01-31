@@ -1,0 +1,33 @@
+server:
+  tomcat:
+    uri-encoding: UTF-8
+    connection-timeout: 5000ms
+  port: 8080
+  servlet:
+    context-path: /api
+spring:
+  cache:
+    cache-names:
+      - buckets
+    caffeine:
+      spec: maximumSize=1000000,expireAfterAccess=3600s
+bucket4j:
+  enabled: true
+  filters:
+    - cache-name: buckets
+  url: /api/v1/limit.*
+  strategy: first
+  http-response-body: "{ \"status\": 429, \"error\": \"Too Many Requests\", \"message\": \"You have exhausted your API Request Quota\" }"
+  rate-limits:
+    - expression: "getHeader('X-api-key')"
+      execute-condition: "getHeader('X-api-key').startsWith('PX001-')"
+      bandwidths:
+        - capacity: 1
+          time: 10
+          unit: seconds
+    - expression: "getHeader('X-api-key')"
+      execute-condition: "getHeader('X-api-key').startsWith('BX001-')"
+      bandwidths:
+        - capacity: 20
+          time: 60
+          unit: minutes
