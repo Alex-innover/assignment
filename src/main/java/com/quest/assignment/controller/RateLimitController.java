@@ -1,8 +1,6 @@
 package com.quest.assignment.controller;
 
-import io.github.bucket4j.Bucket;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.EnableCaching;
+import com.quest.assignment.common.ratelimit.SlidingWindowLimit;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,11 +8,13 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("v1")
 public class RateLimitController {
 
-    private Bucket bucket;
+    private SlidingWindowLimit slidingWindowLimit = new SlidingWindowLimit(20,10,10);
 
     @GetMapping("limit")
-    public ResponseEntity testRateLimit(@RequestHeader(value = "X-api-key") String apiKey){
-
+    public ResponseEntity testRateLimit(){
+        if(!slidingWindowLimit.tryCount()){
+            return ResponseEntity.ok("Over request count access");
+        }
         return ResponseEntity.ok("access successful");
     }
 

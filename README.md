@@ -1,6 +1,6 @@
 # assignment
-Use bucket4j framework to implement rate limiting, the application can be run now but not worked 
 
-1. download the code and open by idea or some IDE tools
-2. project is build base on maven 
+implentment with sliding window based on circular array, here is the test result with parames: gridNumber:2 limitCount:10 limitTime:10
+
+![img.png](img.png)
 
