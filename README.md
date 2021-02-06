@@ -4,5 +4,33 @@ implentment with sliding window based on circular array, here is the test result
 
 Ubuntu test script: curl http://localhost:8080/api/v1/limit
 
-![img.png](img.png)
+alex@akex:~$ curl http://localhost:8080/api/v1/limit
+access successful
+alex@akex:~$ curl http://localhost:8080/api/v1/limit
+access successful
+alex@akex:~$ curl http://localhost:8080/api/v1/limit
+access successful
+alex@akex:~$ curl http://localhost:8080/api/v1/limit
+access successful
+alex@akex:~$ curl http://localhost:8080/api/v1/limit
+access successful
+alex@akex:~$ curl http://localhost:8080/api/v1/limit
+access successful
+alex@akex:~$ curl http://localhost:8080/api/v1/limit
+access successful
+alex@akex:~$ curl http://localhost:8080/api/v1/limit
+access successful
+alex@akex:~$ curl http://localhost:8080/api/v1/limit
+access successful
+alex@akex:~$ curl http://localhost:8080/api/v1/limit
+access successful
+alex@akex:~$ curl http://localhost:8080/api/v1/limit
+Over request count access
+alex@akex:~$ curl http://localhost:8080/api/v1/limit
+Over request count access
+alex@akex:~$ curl http://localhost:8080/api/v1/limit
+Over request count access
+
+
+
 
